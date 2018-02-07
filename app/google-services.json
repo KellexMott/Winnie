@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "804457895737",
+    "firebase_url": "https://winnie-9db73.firebaseio.com",
+    "project_id": "winnie-9db73",
+    "storage_bucket": "winnie-9db73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804457895737:android:55b7e4b489789271",
+        "android_client_info": {
+          "package_name": "com.techart.winnie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804457895737-1hun3osgbotd5c0llmkkvdch17r0e1nm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techart.winnie",
+            "certificate_hash": "96d8d48e74bfd3c78a25270746519b2b56acafdb"
+          }
+        },
+        {
+          "client_id": "804457895737-supppdbmpi7uls5nvo24grr3vkftk5aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr8r7H1f0d_uM6ExcK2lzCErjExz0S_-8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804457895737-supppdbmpi7uls5nvo24grr3vkftk5aa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

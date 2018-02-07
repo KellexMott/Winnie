@@ -1,0 +1,20 @@
+<resources>
+    <string-array name="categories">
+        <item>Select Category</item>
+        <item>Action</item>
+        <item>Drama</item>
+        <item>Fiction</item>
+        <item>Romance</item>
+    </string-array>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="activity_horizontal">8dp</dimen>
+
+
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="item_row">8dp</dimen>
+</resources>

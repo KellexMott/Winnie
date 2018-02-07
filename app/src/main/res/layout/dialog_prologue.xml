@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context="com.techart.winnie.StoryDescriptionActivity">
+
+     <Spinner
+        android:id="@+id/categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editStoryTitle"
+        style="@style/ButtonEditor"
+        android:hint="@string/story_title"
+        />
+
+    <EditText
+        android:id="@+id/editStoryDescription"
+        style="@style/ButtonEditor"
+        android:maxLines="5"
+        android:hint="@string/prologue"
+        />
+</LinearLayout>

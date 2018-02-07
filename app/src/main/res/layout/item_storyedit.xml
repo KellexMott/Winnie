@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/title_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/im_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/delete"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/ic_delete_white_24px"  />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/tv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/item_row"
+            android:paddingBottom="@dimen/item_row"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <ToggleButton
+            android:id="@+id/tb_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOn="@string/complete"
+            android:textOff="@string/ongoing"
+            android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:id="@+id/bt_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/item_row"
+            android:paddingBottom="@dimen/item_row"
+            android:text="@string/edit_chapters"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/like_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/likeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/like_button"
+                    android:background="@android:color/transparent"
+                    android:padding="7dp"
+                    app:srcCompat="@drawable/ic_thumb_up_grey_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_numlikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:padding="7dp"
+                    android:text="@string/initial_count"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/comment_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@+id/like_layout"
+                android:layout_toEndOf="@+id/like_layout">
+                <ImageButton
+                    android:id="@+id/commentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/comment_icon"
+                    android:background="@android:color/transparent"
+                    android:padding="7dp"
+                    app:srcCompat="@drawable/ic_comment_grey_24px" />
+                <TextView
+                    android:id="@+id/tv_numcomments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginEnd="7dp"
+                    android:text="@string/initial_count"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/just_now"
+                android:padding="7dp"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

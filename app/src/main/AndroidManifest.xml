@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.techart.winnie">
+
+    <application
+        android:name=".Winnie"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.MainActivity" />
+        </activity>
+        <activity
+            android:name=".StoryViewActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".LikesActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".ActivityRead"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ActivityPrologue"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ActivityOverview"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.MainActivity" />
+        </activity>
+        <activity
+            android:name=".LibraryActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".StoryEditorActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".StoryDescriptionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.StoryDescriptionActivity" />
+        </activity>
+        <activity
+            android:name=".StoryDescriptionActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".AuthorsProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.AuthorsProfileActivity" />
+        </activity>
+
+        <activity
+            android:name=".ChapterEditorActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".StoryViewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.StoryViewActivity" />
+        </activity>
+
+        <activity
+            android:name=".ChapterListActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".StoryViewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.StoryViewActivity" />
+        </activity>
+
+        <activity
+            android:name=".SelectChapterDialog"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/dialogTheme" />
+
+        <activity
+            android:name=".StoryDialogActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/dialogTheme" />
+
+        <activity
+            android:name=".StoryTitleEditDialog"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/dialogTheme" />
+
+        <activity
+            android:name=".AddChapterActivity"
+            android:parentActivityName=".StoryViewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.techart.winnie.StoryViewActivity" />
+        </activity>
+    </application>
+
+</manifest>
