@@ -45,10 +45,13 @@
             android:name=".LikesActivity"
             android:excludeFromRecents="true"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".RegisterActivity" />
+
+        <activity
+            android:name=".RegisterActivity" />
+
         <activity
             android:name=".ActivityRead"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ActivityPrologue"
             android:excludeFromRecents="true"
@@ -57,6 +60,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.MainActivity" />
         </activity>
+
         <activity
             android:name=".ActivityOverview"
             android:excludeFromRecents="true"
@@ -65,6 +69,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.MainActivity" />
         </activity>
+
         <activity
             android:name=".LibraryActivity"
             android:excludeFromRecents="true"
@@ -73,6 +78,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.ProfileActivity" />
         </activity>
+
         <activity
             android:name=".StoryEditorActivity"
             android:excludeFromRecents="true"
@@ -81,6 +87,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.StoryDescriptionActivity" />
         </activity>
+
         <activity
             android:name=".StoryDescriptionActivity"
             android:excludeFromRecents="true"
@@ -89,15 +96,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.ProfileActivity" />
         </activity>
+
         <activity
-            android:name=".SettingsActivity"
+            android:name=".AuthorsProfileActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".AuthorsProfileActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.techart.winnie.AuthorsProfileActivity" />
+                android:value="com.techart.winnie.MainActivity" />
         </activity>
-
         <activity
             android:name=".ChapterEditorActivity"
             android:excludeFromRecents="true"
@@ -106,7 +113,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.StoryViewActivity" />
         </activity>
-
         <activity
             android:name=".ChapterListActivity"
             android:excludeFromRecents="true"
@@ -115,25 +121,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.StoryViewActivity" />
         </activity>
-
         <activity
             android:name=".SelectChapterDialog"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/dialogTheme" />
-
         <activity
             android:name=".StoryDialogActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/dialogTheme" />
-
         <activity
             android:name=".StoryTitleEditDialog"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/dialogTheme" />
-
         <activity
             android:name=".AddChapterActivity"
             android:parentActivityName=".StoryViewActivity">
@@ -141,6 +143,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.techart.winnie.StoryViewActivity" />
         </activity>
+
+        <activity android:name=".WriterSettingsActivity" />
+
+        <activity
+            android:name=".InformationActivity"></activity>
     </application>
 
 </manifest>

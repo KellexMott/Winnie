@@ -68,8 +68,7 @@ public class StoryViewActivity extends AppCompatActivity {
         Toast.makeText(this,"Story marked as " + ((ToggleButton) view).getText(),Toast.LENGTH_LONG).show();
     }
 
-    private void bindView()
-    {
+    private void bindView() {
         Query query = mDatabaseStory.orderByChild(Constants.POST_AUTHOR).equalTo(author);
         FirebaseRecyclerAdapter<Story,StoryViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(
                 Story.class,R.layout.item_storyedit,StoryViewHolder.class, query) {
@@ -297,6 +296,5 @@ public class StoryViewActivity extends AppCompatActivity {
             FireBaseUtils.setLikeBtn(post_key,btnLiked);
         }
     }
-
 }
 

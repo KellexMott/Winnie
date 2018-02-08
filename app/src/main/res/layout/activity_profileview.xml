@@ -20,20 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:textStyle="bold"
-        android:text="60"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:textAllCaps="true"
-        android:text="@string/readers"/>
-    <Button
-        android:id="@+id/btPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:text="@string/view_stories"/>
+        android:text="@string/winnie"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -71,6 +58,27 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:text="Winnie is an amazing author who loves writings. She is AHppily married to a man who inpires her to be the best she can be"/>
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+
+        android:text="From the Author"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/rv_storyviews">
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
 
 

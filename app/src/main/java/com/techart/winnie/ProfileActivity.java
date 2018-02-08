@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setExitTransition(new Slide());
         setContentView(R.layout.activity_profile);
         author = FireBaseUtils.getAuthor();
         btPost = findViewById(R.id.btPost);
@@ -61,18 +65,10 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            logOut();
-        }else if (id == R.id.action_create) {
-            Intent post = new Intent(ProfileActivity.this,SettingsActivity.class);
+            Intent post = new Intent(ProfileActivity.this,InformationActivity.class);
             startActivity(post);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
     }
 
     private void logOut() {

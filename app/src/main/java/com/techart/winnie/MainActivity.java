@@ -1,5 +1,6 @@
 package com.techart.winnie;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,8 +13,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -65,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                    // Intent dialogIntent = new Intent(MainActivity.this,  Library.class);
-                    //startActivity(dialogIntent);
+                   // startActivity(dialogIntent);
                     return true;
                 case R.id.navigation_notifications:
-                    Intent accountIntent = new Intent(MainActivity.this, ProfileActivity.class);
-                    startActivity(accountIntent);
+                    Intent accountIntent = new Intent(MainActivity.this, AuthorsProfileActivity.class);
+                    startActivity(accountIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
                     return true;
             }
             return false;
@@ -79,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setExitTransition(new Slide());
         setContentView(R.layout.activity_main);
-
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -106,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         mStoryList.setLayoutManager(linearLayoutManager);
         bindView();
+
     }
 
     private void bindView() {
         FirebaseRecyclerAdapter<Story,StoryViewHolder> fireBaseRecyclerAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(
-                Story.class,R.layout.item_storyrow,StoryViewHolder.class, FireBaseUtils.mDatabaseStory)
-        {
+            Story.class,R.layout.item_storyrow,StoryViewHolder.class, FireBaseUtils.mDatabaseStory){
             @Override
             protected void populateViewHolder(StoryViewHolder viewHolder, final Story model, int position) {
                 final String post_key = getRef(position).getKey();
@@ -121,23 +126,19 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setIvImage(MainActivity.this, ImageUtils.getStoryUrl(model.getCategory().trim()));
                 viewHolder.setTypeFace(MainActivity.this);
                 viewHolder.btAuthor.setText(getString(R.string.post_author,model.getTitle()));
-                if (model.getNumLikes() != null)
-                {
+                if (model.getNumLikes() != null) {
                     viewHolder.tvNumLikes.setText(String.format("%s",model.getNumLikes().toString()));
                 }
 
-                if (model.getNumComments() != null)
-                {
+                if (model.getNumComments() != null) {
                     viewHolder.tvNumComments.setText(String.format("%s",model.getNumComments().toString()));
                 }
 
-                if (model.getNumViews() != null)
-                {
+                if (model.getNumViews() != null) {
                     viewHolder.tvNumViews.setText(String.format("%s",model.getNumViews().toString()));
                 }
 
-                if (model.getTimeCreated() != null)
-                {
+                if (model.getTimeCreated() != null) {
                     String time = TimeUtils.timeElapsed(model.getTimeCreated());
                     viewHolder.tvTime.setText(time);
                 }
@@ -145,8 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setLikeBtn(post_key);
                 viewHolder.setPostViewed(post_key);
 
-                if (model.getLastUpdate() != null)
-                {
+                if (model.getLastUpdate() != null) {
                     Boolean t = TimeUtils.currentTime() - model.getLastUpdate() < TimeUtils.MILLISECONDS_DAY; //&& res;
                     viewHolder.setVisibility(t);
                 }
@@ -166,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (mProcessLike) {
-                                    if (dataSnapshot.hasChild(FireBaseUtils.mAuth.getCurrentUser().getUid()))
-                                    {
+                                    if (dataSnapshot.hasChild(FireBaseUtils.mAuth.getCurrentUser().getUid())) {
                                         FireBaseUtils.mDatabaseLike.child(post_key).child(FireBaseUtils.mAuth.getCurrentUser().getUid()).removeValue();
                                         FireBaseUtils.onStoryDisliked(post_key);
                                         mProcessLike = false;
@@ -217,14 +216,29 @@ public class MainActivity extends AppCompatActivity {
         fireBaseRecyclerAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent post = new Intent(MainActivity.this,InformationActivity.class);
+            startActivity(post);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void addToViews(final String post_key, final Story model) {
         mProcessView = true;
         FireBaseUtils.mDatabaseViews.child(post_key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (mProcessView) {
-                    if (!dataSnapshot.hasChild(FireBaseUtils.mAuth.getCurrentUser().getUid()))
-                    {
+                    if (!dataSnapshot.hasChild(FireBaseUtils.mAuth.getCurrentUser().getUid())) {
                         FireBaseUtils.addStoryView(model,post_key);
                         mProcessView = false;
                         FireBaseUtils.onStoryViewed(post_key);
@@ -247,8 +261,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void loadChapters()
-    {
+    private void loadChapters() {
         final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Loading chapters");
         progressDialog.setCancelable(true);
@@ -258,8 +271,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pageCount = ((int) dataSnapshot.getChildrenCount());
-                for (DataSnapshot chapterSnapShot: dataSnapshot.getChildren())
-                {
+                for (DataSnapshot chapterSnapShot: dataSnapshot.getChildren()) {
                     Chapter chapter = chapterSnapShot.getValue(Chapter.class);
                     contents.add(chapter.getContent());
                     chapterTitles.add(chapter.getChapterTitle());
@@ -285,8 +297,7 @@ public class MainActivity extends AppCompatActivity {
         FireBaseUtils.mDatabaseLibrary.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.child(FireBaseUtils.mAuth.getCurrentUser().getUid()).hasChild(post_key))
-                {
+                if (!dataSnapshot.child(FireBaseUtils.mAuth.getCurrentUser().getUid()).hasChild(post_key)) {
                     Map<String,Object> values = new HashMap<>();
                     values.put(Constants.POST_KEY,  post_key);
                     values.put(Constants.POST_TITLE, model.getTitle());
@@ -308,8 +319,6 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
     }
 
-
-
     @Override
     public String toString() {
         return "Stories";
@@ -320,23 +329,20 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int button) {
-                        if (button == DialogInterface.BUTTON_POSITIVE)
-                        {
+                        if (button == DialogInterface.BUTTON_POSITIVE) {
                             FirebaseMessaging.getInstance().subscribeToTopic(post_key);
                             addToViews(post_key, model);
                             initializeChapters(post_key, model);
-                        }
-                        else
-                        {
+                        } else {
                             dialog.dismiss();
                         }
                     }
                 };
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage(description)
-                .setPositiveButton("Start Reading", dialogClickListener)
-                .setNegativeButton("Back", dialogClickListener)
-                .show();
+        .setPositiveButton("Start Reading", dialogClickListener)
+        .setNegativeButton("Back", dialogClickListener)
+        .show();
     }
 
     public static class StoryViewHolder extends RecyclerView.ViewHolder
@@ -391,8 +397,7 @@ public class MainActivity extends AppCompatActivity {
             tvChapters.setTypeface(typeface);
         }
 
-        protected void setVisibility(Boolean isVisible)
-        {
+        protected void setVisibility(Boolean isVisible) {
             if (isVisible){
                 tvState.setVisibility(View.VISIBLE);
             }else{
@@ -400,8 +405,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        public void setIvImage(Context context, int resourceValue)
-        {
+        public void setIvImage(Context context, int resourceValue) {
             Glide.with(context)
                     .load(resourceValue)
                     .into(ivStory);

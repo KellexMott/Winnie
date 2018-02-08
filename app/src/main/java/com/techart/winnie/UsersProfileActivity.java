@@ -61,7 +61,7 @@ public class UsersProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent post = new Intent(UsersProfileActivity.this,SettingsActivity.class);
+            Intent post = new Intent(UsersProfileActivity.this,InformationActivity.class);
             startActivity(post);
         }
         return super.onOptionsItemSelected(item);

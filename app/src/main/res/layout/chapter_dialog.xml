@@ -21,11 +21,8 @@
 
         <GridView
             android:id="@+id/gv_chapters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:padding="10dp"
-            android:numColumns="4"
-            android:gravity="center"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchMode="spacingWidthUniform"
+            android:numColumns="4"/>
 </LinearLayout>

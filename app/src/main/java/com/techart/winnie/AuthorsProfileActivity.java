@@ -13,7 +13,6 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.techart.winnie.constants.FireBaseUtils;
-
 /**
  * Displays users private content. Such as
  * 1. Posted items
@@ -61,7 +60,8 @@ public class AuthorsProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            logOut();
+            Intent post = new Intent(AuthorsProfileActivity.this,InformationActivity.class);
+            startActivity(post);
         }else if (id == R.id.action_create) {
             Intent post = new Intent(AuthorsProfileActivity.this,StoryDescriptionActivity.class);
             startActivity(post);
@@ -82,8 +82,8 @@ public class AuthorsProfileActivity extends AppCompatActivity {
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure))
-            .setPositiveButton(getString(android.R.string.yes), dialogClickListener)
-            .setNegativeButton(getString(android.R.string.no), dialogClickListener)
-            .show();
+        .setPositiveButton(getString(android.R.string.yes), dialogClickListener)
+        .setNegativeButton(getString(android.R.string.no), dialogClickListener)
+        .show();
     }
 }
